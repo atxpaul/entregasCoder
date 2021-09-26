@@ -1,4 +1,4 @@
-class ApellidoNombre {
+class Usuario {
   constructor(nombre, apellido, libros, mascotas) {
     this.nombre = nombre;
     this.apellido = apellido;
@@ -32,7 +32,7 @@ class ApellidoNombre {
   }
 }
 
-johnsmith = new ApellidoNombre(
+johnsmith = new Usuario(
   'John',
   'Smith',
   [{ nombre: 'La Isla del Tesoro', autor: 'Robert Louis Stevenson' }],
