@@ -3,6 +3,16 @@ const fs = require('fs');
 class Contenedor {
   constructor(nombreArchivo) {
     this.nombreArchivo = nombreArchivo;
+    //TODO Controlar que se cree el archivo si no existe previamente
+    fs.readdir(__dirname, (error, nombres) => {
+      if (error) {
+        console.log(error);
+      } else {
+        if (nombres.indexOf(nombreArchivo) == -1) {
+          fs.writeFileSync(nombreArchivo, '');
+        }
+      }
+    });
   }
 
   async save(objeto) {
@@ -13,6 +23,7 @@ class Contenedor {
       id = Math.max(...ids) + 1;
     } else {
       id = 1;
+      contenido = [];
     }
     objeto.id = id;
     contenido.push(objeto);
@@ -38,7 +49,11 @@ class Contenedor {
     } catch (err) {
       console.log(err);
     }
-    return JSON.parse(contenido);
+    if (contenido) {
+      return JSON.parse(contenido);
+    } else {
+      return null;
+    }
   }
 
   async deleteById(id) {
@@ -61,7 +76,4 @@ class Contenedor {
   }
 }
 
-// console.log(
-//   con.save({ title: 'Cosa3', price: 2.5, thumbnail: 'https://cosa.png' })
-// );
-// console.log(con.getAll());
+module.exports = Contenedor;
