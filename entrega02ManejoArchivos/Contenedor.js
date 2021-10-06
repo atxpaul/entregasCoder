@@ -46,9 +46,7 @@ class Contenedor {
     let contenido;
     try {
       contenido = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
     if (contenido) {
       return JSON.parse(contenido);
     } else {
