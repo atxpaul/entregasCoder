@@ -37,8 +37,14 @@ class Contenedor {
   }
 
   async getById(id) {
+    let objeto;
     let contenido = await this.getAll();
-    let objeto = contenido.find((c) => c.id == id);
+    try {
+      objeto = contenido.find((c) => c.id == id);
+    } catch (err) {
+      console.log(`El fichero está vacío`);
+    }
+
     return objeto ? objeto : null;
   }
 
