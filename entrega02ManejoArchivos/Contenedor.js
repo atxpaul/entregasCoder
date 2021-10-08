@@ -4,7 +4,7 @@ class Contenedor {
   constructor(nombreArchivo) {
     this.nombreArchivo = nombreArchivo;
     //TODO Controlar que se cree el archivo si no existe previamente
-    fs.readdir(__dirname, (error, nombres) => {
+    fs.readdirSync(__dirname, (error, nombres) => {
       if (error) {
         console.log(error);
       } else {
@@ -42,10 +42,10 @@ class Contenedor {
     try {
       objeto = contenido.find((c) => c.id == id);
     } catch (err) {
-      console.log(`El fichero está vacío`);
+      console.log(err);
     }
 
-    return objeto ? objeto : null;
+    return objeto ? objeto : [];
   }
 
   async getAll() {
@@ -56,7 +56,7 @@ class Contenedor {
     if (contenido) {
       return JSON.parse(contenido);
     } else {
-      return null;
+      return [];
     }
   }
 

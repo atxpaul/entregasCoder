@@ -32,7 +32,7 @@ const container = require('./Contenedor');
   await con.getById(2);
   await con.getAll();
   await con.deleteById(4);
-  await con.deleteAll();
+  //await con.deleteAll();
 
   //Lecturas por consola por si se quiere verificar, para que muestre datos hay que ejecutar los .save antes, si no mostrará null
   // console.log(await con.getAll());
