@@ -18,7 +18,7 @@ class Contenedor {
   async save(objeto) {
     let id;
     let contenido = await this.getAll();
-    if (contenido) {
+    if (contenido.length > 0) {
       let ids = contenido.map((c) => c.id);
       id = Math.max(...ids) + 1;
     } else {
