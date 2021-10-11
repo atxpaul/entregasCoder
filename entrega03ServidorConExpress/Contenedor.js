@@ -3,16 +3,10 @@ const fs = require('fs');
 class Contenedor {
   constructor(nombreArchivo) {
     this.nombreArchivo = nombreArchivo;
-    //TODO Controlar que se cree el archivo si no existe previamente
-    fs.readdirSync(__dirname, (error, nombres) => {
-      if (error) {
-        console.log(error);
-      } else {
-        if (nombres.indexOf(nombreArchivo) == -1) {
-          fs.writeFileSync(nombreArchivo, '');
-        }
-      }
-    });
+    const nombres = fs.readdirSync(__dirname);
+    if (nombres.indexOf(nombreArchivo) == -1) {
+      fs.writeFileSync(nombreArchivo, '');
+    }
   }
 
   async save(objeto) {
@@ -45,7 +39,7 @@ class Contenedor {
       console.log(err);
     }
 
-    return objeto ? objeto : null;
+    return objeto ? objeto : [];
   }
 
   async getAll() {

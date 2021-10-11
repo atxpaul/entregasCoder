@@ -33,10 +33,7 @@ function getRandom(number) {
 
 async function getRandomProduct() {
   const productos = await con.getAll();
-  let numberToRandom = productos.length;
-  let product = null;
-  while (product == null) {
-    product = await con.getById(getRandom(numberToRandom));
-  }
-  return product;
+  const ids = productos.map((producto) => producto.id);
+  const randomId = getRandom(ids.length);
+  return await con.getById(getRandom(randomId));
 }
