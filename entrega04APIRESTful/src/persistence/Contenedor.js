@@ -3,7 +3,7 @@ const fs = require('fs');
 class Contenedor {
   constructor(nombreArchivo) {
     this.nombreArchivo = nombreArchivo;
-    const nombres = fs.readdirSync(__dirname);
+    const nombres = fs.readdirSync(process.cwd());
     if (nombres.indexOf(nombreArchivo) == -1) {
       fs.writeFileSync(nombreArchivo, '');
     }
@@ -28,6 +28,34 @@ class Contenedor {
       console.log(err);
     }
     return id;
+  }
+
+  async updateById(id, nuevoObjeto) {
+    let objeto;
+    let contenido = await this.getAll();
+    try {
+      objeto = contenido.find((c) => c.id == id);
+    } catch (err) {
+      console.log(err);
+    }
+    if (!objeto) {
+      return [];
+    }
+    contenido = contenido.filter((c) => c.id !== id);
+
+    objeto.title = nuevoObjeto.title;
+    objeto.price = nuevoObjeto.price;
+    objeto.thumbnail = nuevoObjeto.thumbnail;
+
+    contenido.push(objeto);
+    const json = JSON.stringify(contenido, null, 4);
+    try {
+      await fs.promises.writeFile(this.nombreArchivo, json, 'utf-8');
+    } catch (err) {
+      console.log(err);
+    }
+
+    return objeto ? objeto : [];
   }
 
   async getById(id) {

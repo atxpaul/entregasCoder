@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Calculadora",
+        "price": 2.5,
+        "thumbnail": "https://www.mitienda.com/images/Calculadora.png",
+        "id": 1
+    },
+    {
+        "title": "Lápiz",
+        "price": 1,
+        "thumbnail": "https://www.mitienda.com/images/Lapiz.png",
+        "id": 2
+    },
+    {
+        "title": "Boligrafo",
+        "price": 1.5,
+        "thumbnail": "https://www.mitienda.com/images/Boligrafo.png",
+        "id": 3
+    },
+    {
+        "title": "BoligrafoRojo",
+        "price": 2.2,
+        "thumbnail": "https://www.mitienda.com/images/Boligrafo2.png",
+        "id": 4
+    }
+]
