@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
   const producto = req.body;
   if (id) {
     const productoActualizado = await con.updateById(id, producto);
-    res.json(productoActualizado);
+    res.json({});
   } else {
     res.json({ error: 'error al guardar producto' });
   }

@@ -1,26 +1,14 @@
 [
     {
-        "title": "Calculadora",
-        "price": 2.5,
-        "thumbnail": "https://www.mitienda.com/images/Calculadora.png",
-        "id": 1
-    },
-    {
-        "title": "Lápiz",
-        "price": 1,
-        "thumbnail": "https://www.mitienda.com/images/Lapiz.png",
+        "title": "Afilador",
+        "price": "8.75",
+        "thumbnail": "https://www.mitienda.com/images/Afilador.png",
         "id": 2
     },
     {
-        "title": "Boligrafo",
-        "price": 1.5,
+        "title": "Bolígrafo",
+        "price": "1.65",
         "thumbnail": "https://www.mitienda.com/images/Boligrafo.png",
-        "id": 3
-    },
-    {
-        "title": "BoligrafoRojo",
-        "price": 2.2,
-        "thumbnail": "https://www.mitienda.com/images/Boligrafo2.png",
-        "id": 4
+        "id": 1
     }
 ]
