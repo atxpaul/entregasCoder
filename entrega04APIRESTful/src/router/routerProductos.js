@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
   const producto = req.body;
   if (id) {
     const productoActualizado = await con.updateById(id, producto);
-    res.json({});
+    res.json(productoActualizado);
   } else {
     res.json({ error: 'error al guardar producto' });
   }
@@ -45,8 +45,13 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   const id = Number(req.params.id);
-  await con.deleteById(id);
-  res.json({});
+  const productoEliminado = await con.getById(id);
+  if (productoEliminado.length != 0) {
+    await con.deleteById(id);
+    res.json(productoEliminado);
+  } else {
+    res.json({ error: 'error al eliminar producto' });
+  }
 });
 
 module.exports = router;

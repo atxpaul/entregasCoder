@@ -7,7 +7,7 @@
     },
     {
         "title": "Bolígrafo",
-        "price": "1.65",
+        "price": "1.25",
         "thumbnail": "https://www.mitienda.com/images/Boligrafo.png",
         "id": 1
     }
