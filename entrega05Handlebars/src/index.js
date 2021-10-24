@@ -24,10 +24,8 @@ app.get('/', (req, res) => {
   res.render('form.hbs', {});
 });
 app.get('/productos', async (req, res) => {
-  //const productos = await axios.get('http://localhost/api/productos');
-  //console.log(productos);
-  //res.render('products.hbs', await axios.get('/api/productos'));
-  res.send([]);
+  const productos = await axios.get('http://localhost:8080/api/productos');
+  res.render('products.hbs', { productos: productos.data });
 });
 
 app.use('/api/productos', routerProductos);

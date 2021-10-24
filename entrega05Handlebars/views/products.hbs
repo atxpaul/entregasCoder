@@ -1,3 +1,26 @@
-{{#each this}}
-    <div class="row"></div>
-{{/each}}
+
+<h2 class="p-5 text-center">Lista de Productos</h2>
+{{#if productos.length}}
+<div class="table-responsive p-5">
+    <table class="table table-dark p-5">
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+        </tr>
+        {{#each productos}}
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.price}}</td>
+            <td> <img class="img-fluid img-thumbnail" src="{{this.thumbnail}}" alt="Imagen de {{this.title}}" style="width: 50px;"></td>
+           
+        </tr>
+        {{/each}}
+    </table>
+</div>
+{{else}}
+<div class="alert alert-warning alert-dismissible fade show">
+    <strong>No se encontraron productos.</strong>
+</div>
+{{/if}}
+<a href="/" class="btn btn-success mt-3 mb-5 m-5">Añadir productos</a>
