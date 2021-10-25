@@ -1,0 +1,17 @@
+extends layout 
+
+block form
+    h1(class="p-5 text-center")="Ingrese datos"
+    form(id="#form" action="/api/productos" method="post" class="p-5") 
+
+    div(class="mx-5") 
+        label(for="title")="Producto"
+        input(id="title" class="form-control" type="text" name="title") 
+    div(class="mx-5")  
+        label(for="price")="Precio"
+        input(id="price" class="form-control" step="0.01" name="price") 
+    div(class="mx-5") 
+        label(for="thumbnail")="URL imagen"
+        input(id="thumbnail" class="form-control" type="text" name="thumbnail") 
+    button(class="btn btn-success mt-3 mb-5 mx-5")="Enviar"
+    a(class="btn btn-dark mt-3 mb-5 mx-5" href="/productos")="Ver productos" 
