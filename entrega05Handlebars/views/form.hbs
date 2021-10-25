@@ -1,7 +1,7 @@
 <h1 class="p-5 text-center">Ingrese datos</h1>
 <br>
 
-<form target="_blank" action="/api/productos" method="post" class="p-5">
+<form id="#form" action="/api/productos" method="post" class="p-5">
 
     <div class="form-group">
         <label for="title"><b>Producto</b></label>
@@ -23,3 +23,11 @@
     <button class="btn btn-success mt-3 mb-5">Enviar</button>
     <a href="/productos" class="btn btn-dark mt-3 mb-5">Ver productos</a>
 </form>
+
+<!--<script>
+    function sendForm(){
+        document.getElementById("#form").submit();
+        window.location.href = 'http://localhost:8080/'
+    }
+    
+</script>-->

@@ -25,8 +25,7 @@ router.post('/', async (req, res) => {
   const producto = req.body;
   const id = await con.save(producto);
   if (id) {
-    const producto = await con.getById(id);
-    res.json(producto);
+    res.redirect('http://localhost:8080/');
   } else {
     res.json({ error: 'error al guardar producto' });
   }
