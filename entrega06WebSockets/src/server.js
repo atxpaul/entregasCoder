@@ -1,5 +1,6 @@
 const express = require('express');
 const Contenedor = require('./persistence/Contenedor');
+const Mensajes = require('./persistence/Mensaje');
 
 const { Server: HttpServer } = require('http');
 const { Server: Socket } = require('socket.io');
@@ -9,7 +10,7 @@ const app = express();
 const httpServer = new HttpServer(app);
 const io = new Socket(httpServer);
 
-let messages = [];
+let messages = new Mensajes('messages.txt');
 
 products.save({
   title: 'Lápiz',
@@ -29,16 +30,16 @@ io.on('connection', async (socket) => {
   console.log('Nuevo cliente conectado!');
 
   socket.emit('products', await products.getAll());
-  socket.emit('messages', messages);
+  socket.emit('messages', await messages.getAll());
 
   socket.on('update', async (product) => {
     await products.save(product);
     io.sockets.emit('products', await products.getAll());
   });
 
-  socket.on('new-message', (data) => {
-    messages.push(data);
-    io.sockets.emit('messages', messages);
+  socket.on('new-message', async (data) => {
+    await messages.save(data);
+    io.sockets.emit('messages', await messages.getAll());
   });
 });
 

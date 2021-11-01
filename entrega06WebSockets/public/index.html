@@ -54,10 +54,10 @@
         <h1 class="p-5 text-center">Centro de mensajes</h1>
         
         <form onsubmit="return addMessage(this)" class="p-5">
-            <input type="text" class="form-control" id="email" placeholder="email" >
+            <input type="email" class="form-control" id="email" placeholder="email" required>
             <hr>
             <div id="messages" class="mb-5"></div>
-            <input type="text" class="form-control" id="message" placeholder="Mensaje...">
+            <input type="text" class="form-control" id="message" placeholder="Mensaje..." required>
             <input type="submit" class="btn btn-primary mt-3" value="Enviar!">
         </form>
     </div>
