@@ -1,7 +1,7 @@
 import { options } from '../options/mariaDb.js';
 import knexLib from 'knex';
 
-class Contenedor {
+class ProductosDbConnection {
   constructor() {
     this.knex = knexLib(options);
   }
@@ -16,8 +16,9 @@ class Contenedor {
     } catch (err) {
       console.log(err);
     } finally {
-      await this.knex.destroy();
     }
+
+    console.log(`Se ha insertado el producto ID ${producto[0].insertId}`);
 
     return producto[0].insertId;
   }
@@ -65,8 +66,6 @@ class Contenedor {
       }
     } catch (err) {
       console.log(err);
-    } finally {
-      await this.knex.destroy();
     }
     console.log();
 
@@ -93,8 +92,6 @@ class Contenedor {
       }
     } catch (err) {
       console.log(err);
-    } finally {
-      await this.knex.destroy();
     }
 
     return objectsFromDb;
@@ -105,8 +102,6 @@ class Contenedor {
       await this.knex.raw(`DELETE FROM PRODUCTOS WHERE ID_PRODUCTO=?`, [id]);
     } catch (err) {
       console.log(err);
-    } finally {
-      await this.knex.destroy();
     }
   }
 
@@ -115,10 +110,12 @@ class Contenedor {
       await this.knex.raw(`DELETE FROM PRODUCTOS`);
     } catch (err) {
       console.log(err);
-    } finally {
-      await this.knex.destroy();
     }
+  }
+
+  async close() {
+    await this.knex.destroy();
   }
 }
 
-export default Contenedor;
+export default ProductosDbConnection;

@@ -1,11 +1,11 @@
 import express from 'express';
-import Contenedor from './persistence/ContenedorDb.js';
+import Productos from './persistence/ProductosDbConnection.js';
 import Mensajes from './persistence/Mensaje.js';
 
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';
 
-const products = new Contenedor();
+const products = new Productos();
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new Socket(httpServer);
@@ -33,6 +33,7 @@ io.on('connection', async (socket) => {
   socket.emit('messages', await messages.getAll());
 
   socket.on('update', async (product) => {
+    console.log('Se va a insertar un producto');
     await products.save(product);
     io.sockets.emit('products', await products.getAll());
   });
