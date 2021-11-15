@@ -1,5 +1,5 @@
 import express from 'express';
-import Contenedor from './persistence/Contenedor.js';
+import Contenedor from './persistence/ContenedorDb.js';
 import Mensajes from './persistence/Mensaje.js';
 
 import { Server as HttpServer } from 'http';
@@ -14,14 +14,14 @@ let messages = new Mensajes('messages.txt');
 
 products.save({
   title: 'Lápiz',
-  price: '1.75',
+  price: 1.75,
   thumbnail:
     'https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png',
 });
 
 products.save({
   title: 'Regla',
-  price: '2.35',
+  price: 2.35,
   thumbnail:
     'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png',
 });
