@@ -1,6 +1,6 @@
 import express from 'express';
 import Productos from './persistence/ProductosDbConnection.js';
-import Mensajes from './persistence/Mensaje.js';
+import Mensajes from './persistence/MensajeDbConnection.js';
 
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';

@@ -15,10 +15,7 @@ class ProductosDbConnection {
       );
     } catch (err) {
       console.log(err);
-    } finally {
     }
-
-    console.log(`Se ha insertado el producto ID ${producto[0].insertId}`);
 
     return producto[0].insertId;
   }
@@ -37,8 +34,6 @@ class ProductosDbConnection {
       );
     } catch (err) {
       console.log(err);
-    } finally {
-      await this.knex.destroy();
     }
 
     console.log(producto[0]);
