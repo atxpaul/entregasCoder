@@ -1,0 +1,711 @@
+PS C:\Users\pablo\Documents\Javascript\coderhouse> docker run --name mongo -d -v C:\data\db:/data/db -p 27017:27017 mongo mongod --auth
+d50099d524d18583db060a2c682505ac63b47f336e24fa19c4a7aceb50b28755
+PS C:\Users\pablo\Documents\Javascript\coderhouse> docker exec -it mongo mongosh
+Current Mongosh Log ID: 61992369939a4fcc2d9e6516
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000
+Using MongoDB:          5.0.4
+Using Mongosh:          1.1.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting:
+   2021-11-20T16:31:20.892+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2021-11-20T16:31:20.892+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never'
+------
+
+test> use ecommerce
+switched to db ecommerce
+ecommerce> db.productos.insertOne({
+...   title: 'Lápiz',
+...   price: 50,
+...   thumbnail:
+...     'https://miCDN.com/images/Lapiz.png',
+... })
+{
+  acknowledged: true,
+  insertedId: ObjectId("61992f95b2c868ecfb4ccda7")
+}
+ecommerce> db.productos.insertMany([{
+...   title: 'Boligrafo',
+...   price: 200,
+...   thumbnail:
+...     'https://miCDN.com/images/Boligrafo.png',
+... },
+... {
+.....   title: 'BoligrafoRojo',
+.....   price: 300,
+.....   thumbnail:
+.....     'https://miCDN.com/images/BoligrafoRojo.png',
+..... },
+... {
+.....   title: 'BoligrafoNegro',
+.....   price: 350,
+.....   thumbnail:
+.....     'https://miCDN.com/images/BoligrafoNegro.png',
+..... },
+... {
+.....   title: 'Afilador',
+.....   price: 150,
+.....   thumbnail:
+.....     'https://miCDN.com/images/Afilador.png',
+..... },
+... {
+.....   title: 'Estuche',
+.....   price: 2000,
+.....   thumbnail:
+.....     'https://miCDN.com/images/Estuche.png',
+..... },
+... {
+.....   title: 'Lapicero',
+.....   price: 3050,
+.....   thumbnail:
+.....     'https://miCDN.com/images/Lapicero.png',
+..... },
+... {
+.....   title: 'Carpeta',
+.....   price: 3000,
+.....   thumbnail:
+.....     'https://miCDN.com/images/Carpeta.png',
+..... },
+... {
+.....   title: 'Archivador',
+.....   price: 3500,
+.....   thumbnail:
+.....     'https://miCDN.com/images/Archivador.png',
+..... }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("61992fadb2c868ecfb4ccda8"),
+    '1': ObjectId("61992fadb2c868ecfb4ccda9"),
+    '2': ObjectId("61992fadb2c868ecfb4ccdaa"),
+    '3': ObjectId("61992fadb2c868ecfb4ccdab"),
+    '4': ObjectId("61992fadb2c868ecfb4ccdac"),
+    '5': ObjectId("61992fadb2c868ecfb4ccdad"),
+    '6': ObjectId("61992fadb2c868ecfb4ccdae"),
+    '7': ObjectId("61992fadb2c868ecfb4ccdaf")
+  }
+}
+ecommerce> db.mensajes.insertOne({
+...     author: 'yo@correo.com',
+...     text: 'texto',
+...     date: '20/11/2021 12:29:54'
+...   })
+{
+  acknowledged: true,
+  insertedId: ObjectId("61993185b2c868ecfb4ccdb0")
+}
+ecommerce> db.mensajes.insertMany([
+...   {
+.....     author: 'yo@correo.com',
+.....     text: 'texto',
+.....     date: '20/11/2021 12:29:54'
+.....   },
+...   {
+.....     author: 'yo@correo.com',
+.....     text: 'texto',
+.....     date: '20/11/2021 12:29:54'
+.....   },
+...   {
+.....     author: 'rock@r.com',
+.....     text: 'Prueba',
+.....     date: '20/11/2021 12:55:52'
+.....   },
+...   {
+.....     author: 'pablo.pan@pruebas.com',
+.....     text: 'Hola gente!',
+.....     date: '20/11/2021 13:03:00'
+.....   },
+...   {
+.....     author: 'otro@pruebas.com',
+.....     text: 'Hola gente!',
+.....     date: '20/11/2021 13:06:20'
+.....   },
+...   {
+.....     author: 'pablo.pan@pruebas.com',
+.....     text: 'Hola gente!',
+.....     date: '20/11/2021 13:06:37'
+.....   },
+...   {
+.....     author: 'otro@pruebas.com',
+.....     text: 'Hola gente!',
+.....     date: '20/11/2021 13:06:50'
+.....   },
+...   {
+.....     author: 'pablo.pan@pruebas.com',
+.....     text: 'Hola gente!',
+.....     date: '20/11/2021 13:07:26'
+.....   },
+...   {
+.....     author: 'otro@pruebas.com',
+.....     text: 'Prueba',
+.....     date: '20/11/2021 18:29:10'
+.....   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("61993196b2c868ecfb4ccdb1"),
+    '1': ObjectId("61993196b2c868ecfb4ccdb2"),
+    '2': ObjectId("61993196b2c868ecfb4ccdb3"),
+    '3': ObjectId("61993196b2c868ecfb4ccdb4"),
+    '4': ObjectId("61993196b2c868ecfb4ccdb5"),
+    '5': ObjectId("61993196b2c868ecfb4ccdb6"),
+    '6': ObjectId("61993196b2c868ecfb4ccdb7"),
+    '7': ObjectId("61993196b2c868ecfb4ccdb8"),
+    '8': ObjectId("61993196b2c868ecfb4ccdb9")
+  }
+}
+ecommerce> db.productos.find({})
+[
+  {
+    _id: ObjectId("61992f95b2c868ecfb4ccda7"),
+    title: 'Lápiz',
+    price: 50,
+    thumbnail: 'https://miCDN.com/images/Lapiz.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda8"),
+    title: 'Boligrafo',
+    price: 200,
+    thumbnail: 'https://miCDN.com/images/Boligrafo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda9"),
+    title: 'BoligrafoRojo',
+    price: 300,
+    thumbnail: 'https://miCDN.com/images/BoligrafoRojo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaa"),
+    title: 'BoligrafoNegro',
+    price: 350,
+    thumbnail: 'https://miCDN.com/images/BoligrafoNegro.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdab"),
+    title: 'Afilador',
+    price: 150,
+    thumbnail: 'https://miCDN.com/images/Afilador.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdac"),
+    title: 'Estuche',
+    price: 2000,
+    thumbnail: 'https://miCDN.com/images/Estuche.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdad"),
+    title: 'Lapicero',
+    price: 3050,
+    thumbnail: 'https://miCDN.com/images/Lapicero.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdae"),
+    title: 'Carpeta',
+    price: 3000,
+    thumbnail: 'https://miCDN.com/images/Carpeta.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaf"),
+    title: 'Archivador',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Archivador.png'
+  }
+]
+ecommerce> db.mensajes.find({})
+[
+  {
+    _id: ObjectId("61993185b2c868ecfb4ccdb0"),
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb1"),
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb2"),
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb3"),
+    author: 'rock@r.com',
+    text: 'Prueba',
+    date: '20/11/2021 12:55:52'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb4"),
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:03:00'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb5"),
+    author: 'otro@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:20'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb6"),
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:37'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb7"),
+    author: 'otro@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:50'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb8"),
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:07:26'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb9"),
+    author: 'otro@pruebas.com',
+    text: 'Prueba',
+    date: '20/11/2021 18:29:10'
+  }
+]
+ecommerce> db.productos.countDocuments({})
+9
+ecommerce> db.mensajes.countDocuments({})
+10
+ecommerce> db.productos.insertOne({
+...   title: 'Escritorio',
+...   price: 3500,
+...   thumbnail:
+...     'https://miCDN.com/images/Escritorio.png',
+... })
+{
+  acknowledged: true,
+  insertedId: ObjectId("619932d6b2c868ecfb4ccdba")
+}
+ecommerce> db.productos.find({"price": {$lt: 1000}})
+[
+  {
+    _id: ObjectId("61992f95b2c868ecfb4ccda7"),
+    title: 'Lápiz',
+    price: 50,
+    thumbnail: 'https://miCDN.com/images/Lapiz.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda8"),
+    title: 'Boligrafo',
+    price: 200,
+    thumbnail: 'https://miCDN.com/images/Boligrafo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda9"),
+    title: 'BoligrafoRojo',
+    price: 300,
+    thumbnail: 'https://miCDN.com/images/BoligrafoRojo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaa"),
+    title: 'BoligrafoNegro',
+    price: 350,
+    thumbnail: 'https://miCDN.com/images/BoligrafoNegro.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdab"),
+    title: 'Afilador',
+    price: 150,
+    thumbnail: 'https://miCDN.com/images/Afilador.png'
+  }
+]
+ecommerce> db.productos.find({"price": {$in: [1000,3000]}})
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdae"),
+    title: 'Carpeta',
+    price: 3000,
+    thumbnail: 'https://miCDN.com/images/Carpeta.png'
+  }
+]
+ecommerce> db.productos.find({"price": {$lt: 3000, $gt:1000}})
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdac"),
+    title: 'Estuche',
+    price: 2000,
+    thumbnail: 'https://miCDN.com/images/Estuche.png'
+  }
+]
+ecommerce> db.productos.find({"price":{$gt:3000}})
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdad"),
+    title: 'Lapicero',
+    price: 3050,
+    thumbnail: 'https://miCDN.com/images/Lapicero.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaf"),
+    title: 'Archivador',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Archivador.png'
+  },
+  {
+    _id: ObjectId("619932d6b2c868ecfb4ccdba"),
+    title: 'Escritorio',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Escritorio.png'
+  }
+]
+ecommerce> db.productos.find({}).sort({"price":-1})
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaf"),
+    title: 'Archivador',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Archivador.png'
+  },
+  {
+    _id: ObjectId("619932d6b2c868ecfb4ccdba"),
+    title: 'Escritorio',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Escritorio.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdad"),
+    title: 'Lapicero',
+    price: 3050,
+    thumbnail: 'https://miCDN.com/images/Lapicero.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdae"),
+    title: 'Carpeta',
+    price: 3000,
+    thumbnail: 'https://miCDN.com/images/Carpeta.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdac"),
+    title: 'Estuche',
+    price: 2000,
+    thumbnail: 'https://miCDN.com/images/Estuche.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaa"),
+    title: 'BoligrafoNegro',
+    price: 350,
+    thumbnail: 'https://miCDN.com/images/BoligrafoNegro.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda9"),
+    title: 'BoligrafoRojo',
+    price: 300,
+    thumbnail: 'https://miCDN.com/images/BoligrafoRojo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda8"),
+    title: 'Boligrafo',
+    price: 200,
+    thumbnail: 'https://miCDN.com/images/Boligrafo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdab"),
+    title: 'Afilador',
+    price: 150,
+    thumbnail: 'https://miCDN.com/images/Afilador.png'
+  },
+  {
+    _id: ObjectId("61992f95b2c868ecfb4ccda7"),
+    title: 'Lápiz',
+    price: 50,
+    thumbnail: 'https://miCDN.com/images/Lapiz.png'
+  }
+]
+ecommerce> db.productos.find({}).sort({"price":1})
+[
+  {
+    _id: ObjectId("61992f95b2c868ecfb4ccda7"),
+    title: 'Lápiz',
+    price: 50,
+    thumbnail: 'https://miCDN.com/images/Lapiz.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdab"),
+    title: 'Afilador',
+    price: 150,
+    thumbnail: 'https://miCDN.com/images/Afilador.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda8"),
+    title: 'Boligrafo',
+    price: 200,
+    thumbnail: 'https://miCDN.com/images/Boligrafo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda9"),
+    title: 'BoligrafoRojo',
+    price: 300,
+    thumbnail: 'https://miCDN.com/images/BoligrafoRojo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaa"),
+    title: 'BoligrafoNegro',
+    price: 350,
+    thumbnail: 'https://miCDN.com/images/BoligrafoNegro.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdac"),
+    title: 'Estuche',
+    price: 2000,
+    thumbnail: 'https://miCDN.com/images/Estuche.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdae"),
+    title: 'Carpeta',
+    price: 3000,
+    thumbnail: 'https://miCDN.com/images/Carpeta.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdad"),
+    title: 'Lapicero',
+    price: 3050,
+    thumbnail: 'https://miCDN.com/images/Lapicero.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaf"),
+    title: 'Archivador',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Archivador.png'
+  },
+  {
+    _id: ObjectId("619932d6b2c868ecfb4ccdba"),
+    title: 'Escritorio',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Escritorio.png'
+  }
+]
+ecommerce> db.productos.find({}).sort({"price":1}).skip(2)
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda8"),
+    title: 'Boligrafo',
+    price: 200,
+    thumbnail: 'https://miCDN.com/images/Boligrafo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda9"),
+    title: 'BoligrafoRojo',
+    price: 300,
+    thumbnail: 'https://miCDN.com/images/BoligrafoRojo.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaa"),
+    title: 'BoligrafoNegro',
+    price: 350,
+    thumbnail: 'https://miCDN.com/images/BoligrafoNegro.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdac"),
+    title: 'Estuche',
+    price: 2000,
+    thumbnail: 'https://miCDN.com/images/Estuche.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdae"),
+    title: 'Carpeta',
+    price: 3000,
+    thumbnail: 'https://miCDN.com/images/Carpeta.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdad"),
+    title: 'Lapicero',
+    price: 3050,
+    thumbnail: 'https://miCDN.com/images/Lapicero.png'
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaf"),
+    title: 'Archivador',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Archivador.png'
+  },
+  {
+    _id: ObjectId("619932d6b2c868ecfb4ccdba"),
+    title: 'Escritorio',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Escritorio.png'
+  }
+]
+ecommerce> db.productos.find({}).sort({"price":1}).skip(2).limit(1)
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccda8"),
+    title: 'Boligrafo',
+    price: 200,
+    thumbnail: 'https://miCDN.com/images/Boligrafo.png'
+  }
+]
+ecommerce> db.productos.updateMany({},{$set: {"stock": 100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 10,
+  modifiedCount: 10,
+  upsertedCount: 0
+}
+ecommerce> db.productos.updateMany({"price":{$gt:3000}},{$set: {"stock": 0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+ecommerce> db.productos.deleteMany({"price":{$lt:1000}})
+{ acknowledged: true, deletedCount: 5 }
+ecommerce> use admin
+switched to db admin
+admin> db.createUser({
+...   user:"pepe",
+...   pwd: "asd456",
+...   roles: [
+...     {role:"read", db:"ecommerce"}
+...   ]
+... })
+{ ok: 1 }
+admin>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+admin> exit
+PS C:\Users\pablo\Documents\Javascript\coderhouse> docker exec -it mongo mongosh -u pepe -p asd456
+Current Mongosh Log ID: 61993aa2bcf4379f6e629183
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000
+Using MongoDB:          5.0.4
+Using Mongosh:          1.1.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+test> show dbs
+ecommerce  147 kB
+test> use ecommerce
+switched to db ecommerce
+ecommerce> db.productos.find({})
+[
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdac"),
+    title: 'Estuche',
+    price: 2000,
+    thumbnail: 'https://miCDN.com/images/Estuche.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdad"),
+    title: 'Lapicero',
+    price: 3050,
+    thumbnail: 'https://miCDN.com/images/Lapicero.png',
+    stock: 0
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdae"),
+    title: 'Carpeta',
+    price: 3000,
+    thumbnail: 'https://miCDN.com/images/Carpeta.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("61992fadb2c868ecfb4ccdaf"),
+    title: 'Archivador',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Archivador.png',
+    stock: 0
+  },
+  {
+    _id: ObjectId("619932d6b2c868ecfb4ccdba"),
+    title: 'Escritorio',
+    price: 3500,
+    thumbnail: 'https://miCDN.com/images/Escritorio.png',
+    stock: 0
+  }
+]
+ecommerce> db.mensajes.find({})
+[
+  {
+    _id: ObjectId("61993185b2c868ecfb4ccdb0"),
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb1"),
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb2"),
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb3"),
+    author: 'rock@r.com',
+    text: 'Prueba',
+    date: '20/11/2021 12:55:52'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb4"),
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:03:00'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb5"),
+    author: 'otro@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:20'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb6"),
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:37'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb7"),
+    author: 'otro@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:50'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb8"),
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:07:26'
+  },
+  {
+    _id: ObjectId("61993196b2c868ecfb4ccdb9"),
+    author: 'otro@pruebas.com',
+    text: 'Prueba',
+    date: '20/11/2021 18:29:10'
+  }
+]
+ecommerce> db.productos.insertOne({
+...   title: 'Escritorio',
+...   price: 3500,
+...   thumbnail:
+...     'https://miCDN.com/images/Escritorio.png',
+... })
+MongoServerError: not authorized on ecommerce to execute command { insert: "productos", documents: [ { title: "Escritorio", price: 3500, thumbnail: "https://miCDN.com/images/Escritorio.png", _id: ObjectId('61993acfeefafab7fcf07b99') } ], ordered: true, lsid: { id: UUID("2fb3f28e-9701-46fc-b43a-09bb2f2ad9a9") }, $db: "ecommerce" }
+ecommerce>

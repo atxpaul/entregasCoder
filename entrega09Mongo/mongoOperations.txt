@@ -1,0 +1,187 @@
+Utilizando Mongo Shell, crear una base de datos llamada ecommerce que contenga dos colecciones: mensajes y productos.
+
+
+1) Agregar 10 documentos con valores distintos a las colecciones mensajes y productos. El formato de los documentos debe estar en correspondencia con el que venimos utilizando en el entregable con base de datos MariaDB. 
+2) Definir las claves de los documentos en relación a los campos de las tablas de esa base. En el caso de los productos, poner valores al campo precio entre los 100 y 5000 pesos(eligiendo valores intermedios, ej: 120, 580, 900, 1280, 1700, 2300, 2860, 3350, 4320, 4990). 
+
+
+use ecommerce
+
+db.productos.insertOne({
+  title: 'Lápiz',
+  price: 50,
+  thumbnail:
+    'https://miCDN.com/images/Lapiz.png',
+})
+
+db.productos.insertMany([{
+  title: 'Boligrafo',
+  price: 200,
+  thumbnail:
+    'https://miCDN.com/images/Boligrafo.png',
+},
+{
+  title: 'BoligrafoRojo',
+  price: 300,
+  thumbnail:
+    'https://miCDN.com/images/BoligrafoRojo.png',
+},
+{
+  title: 'BoligrafoNegro',
+  price: 350,
+  thumbnail:
+    'https://miCDN.com/images/BoligrafoNegro.png',
+},
+{
+  title: 'Afilador',
+  price: 150,
+  thumbnail:
+    'https://miCDN.com/images/Afilador.png',
+},
+{
+  title: 'Estuche',
+  price: 2000,
+  thumbnail:
+    'https://miCDN.com/images/Estuche.png',
+},
+{
+  title: 'Lapicero',
+  price: 3050,
+  thumbnail:
+    'https://miCDN.com/images/Lapicero.png',
+},
+{
+  title: 'Carpeta',
+  price: 3000,
+  thumbnail:
+    'https://miCDN.com/images/Carpeta.png',
+},
+{
+  title: 'Archivador',
+  price: 3500,
+  thumbnail:
+    'https://miCDN.com/images/Archivador.png',
+}])
+
+
+db.mensajes.insertOne({
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  })
+
+db.mensajes.insertMany([
+  {
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    author: 'yo@correo.com',
+    text: 'texto',
+    date: '20/11/2021 12:29:54'
+  },
+  {
+    author: 'rock@r.com',
+    text: 'Prueba',
+    date: '20/11/2021 12:55:52'
+  },
+  {
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:03:00'
+  },
+  {
+    author: 'otro@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:20'
+  },
+  {
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:37'
+  },
+  {
+    author: 'otro@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:06:50'
+  },
+  {
+    author: 'pablo.pan@pruebas.com',
+    text: 'Hola gente!',
+    date: '20/11/2021 13:07:26'
+  },
+  {
+    author: 'otro@pruebas.com',
+    text: 'Prueba',
+    date: '20/11/2021 18:29:10'
+  }
+])
+
+3) Listar todos los documentos en cada colección.
+
+db.productos.find({})
+db.mensajes.find({})
+
+4) Mostrar la cantidad de documentos almacenados en cada una de ellas.
+
+db.productos.countDocuments({})
+
+db.mensajes.countDocuments({})
+
+
+5) Realizar un CRUD sobre la colección de productos:
+
+a) Agregar un producto más en la colección de productos 
+
+
+db.productos.insertOne({
+  title: 'Escritorio',
+  price: 3500,
+  thumbnail:
+    'https://miCDN.com/images/Escritorio.png',
+})
+
+b) Realizar una consulta por nombre de producto específico:
+I)Listar los productos con precio menor a 1000 pesos.
+db.productos.find({"price": {$lt: 1000}})
+
+
+II) Listar los productos con precio entre los 1000 a 3000 pesos.
+db.productos.find({"price": {$lt: 3000, $gt:1000}})
+
+III) Listar los productos con precio mayor a 3000 pesos.
+db.productos.find({"price":{$gt:3000}})
+
+IV) Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+db.productos.find({},{"title":1}).sort({"price":1}).skip(2).limit(1)
+
+c) Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100.
+db.productos.updateMany({},{$set: {"stock": 100}})
+
+d) Cambiar el stock a cero de los productos con precios mayores a 4000 pesos. (Lo hago sobre los mayores de 3000)
+db.productos.updateMany({"price":{$gt:3000}},{$set: {"stock": 0}})
+
+
+e) Borrar los productos con precio menor a 1000 pesos 
+db.productos.deleteMany({"price":{$lt:1000}})
+
+
+6) Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+use admin
+db.createUser({
+  user:"pepe",
+  pwd: "asd456",
+  roles: [
+    {role:"read", db:"ecommerce"}
+  ]
+})
+
+
+ecommerce> db.productos.insertOne({
+...   title: 'Escritorio',
+...   price: 3500,
+...   thumbnail:
+...     'https://miCDN.com/images/Escritorio.png',
+... })
+MongoServerError: not authorized on ecommerce to execute command { insert: "productos", documents: [ { title: "Escritorio", price: 3500, thumbnail: "https://miCDN.com/images/Escritorio.png", _id: ObjectId('61993acfeefafab7fcf07b99') } ], ordered: true, lsid: { id: UUID("2fb3f28e-9701-46fc-b43a-09bb2f2ad9a9") }, $db: "ecommerce" }
