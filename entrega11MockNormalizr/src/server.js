@@ -31,12 +31,7 @@ const message = new schema.Entity('messages', {
 
 const messageArray = [message];
 
-function print(objeto) {
-  console.log(util.inspect(objeto, false, 12, true));
-}
-
-//Se borra BD primero para pruebas
-products.deleteAll();
+// Carga inicial de productos
 
 products.save({
   title: 'Lápiz',
@@ -51,6 +46,11 @@ products.save({
   thumbnail:
     'https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png',
 });
+
+async function normalization(dataArray) {
+  const normalizedData = normalize(dataArray, messageArray);
+  return normalizedData;
+}
 
 io.on('connection', async (socket) => {
   console.log('Nuevo cliente conectado!');
@@ -101,24 +101,3 @@ const connectedServer = httpServer.listen(PORT, () => {
 connectedServer.on('error', (error) =>
   console.log(`Error en servidor ${error}`)
 );
-
-async function normalization(dataArray) {
-  // let normalizedDataArray = [];
-  // for (let index in dataArray) {
-  //   const normalizedData = normalize(dataArray[index], message);
-  //   print(normalizedData);
-  //   normalizedDataArray.push(normalizedData);
-  // }
-
-  const normalizedData = normalize(dataArray, messageArray);
-  print(normalizedData);
-
-  // const denormalizedData = denormalize(
-  //   normalizedData.result,
-  //   messageArray,
-  //   normalizedData.entities
-  // );
-  // print(denormalizedData);
-
-  return normalizedData;
-}
