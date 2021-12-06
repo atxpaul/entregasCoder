@@ -5,17 +5,14 @@ const form = document.getElementById('#form');
 const denormalize = normalizr.denormalize;
 const schema = normalizr.schema;
 
-// Definimos un esquema de autores
+// Definimos esquemas
 const user = new schema.Entity('author');
 
-// Definimos un esquema de textos
-const msg = new schema.Entity('msg');
-
-// Definimos un esquema de mensajes
 const message = new schema.Entity('messages', {
   author: user,
-  text: [msg],
 });
+
+const messageArray = [message];
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -59,28 +56,25 @@ function render(data) {
     .map((elem, index) => {
       return `<div>
         <strong>${elem.author.alias}</strong> [${elem.date}]
-        <em>${elem.text}</em></div>`;
+        <em>${elem.text}</em><img class="img-fluid img-thumbnail" src="${elem.author.avatar}" style="width: 50px;"></div>`;
     })
     .join(' ');
   document.getElementById('messages').innerHTML = html;
 }
 
 function denormalization(normalizedData) {
-  let denormalizedArray = [];
-  for (let index in normalizedData) {
-    const denormalizedData = denormalize(
-      normalizedData[index].result,
-      message,
-      normalizedData[index].entities
-    );
-    console.log(denormalizedData);
-    denormalizedArray.push(denormalizedData);
-    let compressed = Number(JSON.stringify(normalizedData).length);
-    let deCompressed = Number(JSON.stringify(denormalizedData).length);
-    updateCompression(compressed, deCompressed);
-  }
+  const denormalizedData = denormalize(
+    normalizedData.result,
+    [message],
+    normalizedData.entities
+  );
+  console.log(denormalizedData);
 
-  return denormalizedArray;
+  let compressed = Number(JSON.stringify(normalizedData).length);
+  let deCompressed = Number(JSON.stringify(denormalizedData).length);
+  updateCompression(compressed, deCompressed);
+
+  return denormalizedData;
 }
 
 function updateCompression(compressed, deCompressed) {

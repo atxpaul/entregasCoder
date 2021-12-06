@@ -5,37 +5,24 @@
             "nombre": "Test",
             "apellido": "Test2",
             "edad": "22",
-            "alias": "Test",
-            "avatar": "foto.jpg"
+            "alias": "test",
+            "avatar": "https://cdn3.iconfinder.com/data/icons/vol-4/128/pen-256.png"
         },
-        "text": "Mensaje de prueba 1",
-        "date": "6/12/2021 2:15:39",
+        "text": "holaaaaaa",
+        "date": "6/12/2021 11:56:17",
         "id": 1
     },
     {
         "author": {
-            "id": "prueba@gmail.com",
-            "nombre": "Test",
-            "apellido": "Test2",
-            "edad": "22",
-            "alias": "Test",
-            "avatar": "foto.jpg"
+            "id": "test@hotmail.com",
+            "nombre": "Prueba",
+            "apellido": "Prueba2",
+            "edad": "23",
+            "alias": "AliasTest",
+            "avatar": "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png"
         },
-        "text": "Mensaje de prueba 2",
-        "date": "6/12/2021 2:15:44",
+        "text": "Mensaje de prueba 1",
+        "date": "6/12/2021 11:57:18",
         "id": 2
-    },
-    {
-        "author": {
-            "id": "nuevaprueba@gmail.com",
-            "nombre": "NuevoTest",
-            "apellido": "Test",
-            "edad": "22",
-            "alias": "NuevoTest",
-            "avatar": "foto.jpg"
-        },
-        "text": "Mensaje de prueba 3",
-        "date": "6/12/2021 2:16:13",
-        "id": 3
     }
 ]

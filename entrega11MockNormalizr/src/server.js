@@ -25,10 +25,11 @@ let messages = new Mensajes('.messages');
 // Definimos esquemas
 const user = new schema.Entity('author');
 
-const messageArray = new schema.Entity('messages', {
-  id: 'mensajes',
+const message = new schema.Entity('messages', {
   author: user,
 });
+
+const messageArray = [message];
 
 function print(objeto) {
   console.log(util.inspect(objeto, false, 12, true));
@@ -111,6 +112,13 @@ async function normalization(dataArray) {
 
   const normalizedData = normalize(dataArray, messageArray);
   print(normalizedData);
+
+  // const denormalizedData = denormalize(
+  //   normalizedData.result,
+  //   messageArray,
+  //   normalizedData.entities
+  // );
+  // print(denormalizedData);
 
   return normalizedData;
 }
