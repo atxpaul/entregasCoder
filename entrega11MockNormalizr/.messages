@@ -1,0 +1,41 @@
+[
+    {
+        "author": {
+            "id": "prueba@gmail.com",
+            "nombre": "Test",
+            "apellido": "Test2",
+            "edad": "22",
+            "alias": "Test",
+            "avatar": "foto.jpg"
+        },
+        "text": "Mensaje de prueba 1",
+        "date": "6/12/2021 2:15:39",
+        "id": 1
+    },
+    {
+        "author": {
+            "id": "prueba@gmail.com",
+            "nombre": "Test",
+            "apellido": "Test2",
+            "edad": "22",
+            "alias": "Test",
+            "avatar": "foto.jpg"
+        },
+        "text": "Mensaje de prueba 2",
+        "date": "6/12/2021 2:15:44",
+        "id": 2
+    },
+    {
+        "author": {
+            "id": "nuevaprueba@gmail.com",
+            "nombre": "NuevoTest",
+            "apellido": "Test",
+            "edad": "22",
+            "alias": "NuevoTest",
+            "avatar": "foto.jpg"
+        },
+        "text": "Mensaje de prueba 3",
+        "date": "6/12/2021 2:16:13",
+        "id": 3
+    }
+]
