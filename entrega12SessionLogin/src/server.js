@@ -1,24 +1,35 @@
 import express from 'express';
+import session from 'express-session';
 import Productos from './persistence/ProductosDbConnection.js';
 import Mensajes from './persistence/FileContainer.js';
+import MongoStore from 'connect-mongo';
+import mongoConfig from './config/mongoConfig.js';
 
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';
 
+// Arrancamos express
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const httpServer = new HttpServer(app);
+const io = new Socket(httpServer);
+
+const products = new Productos();
+
+let messages = new Mensajes('.messages');
+
+// Arrancamos faker
 import faker from 'faker';
 faker.locale = 'es';
 const { commerce, image } = faker;
 
+// Arrancamos normalizr
 import normalizr from 'normalizr';
+
 const normalize = normalizr.normalize;
 const schema = normalizr.schema;
-
-const products = new Productos();
-const app = express();
-const httpServer = new HttpServer(app);
-const io = new Socket(httpServer);
-
-let messages = new Mensajes('.messages');
 
 // Definimos esquemas
 const user = new schema.Entity('author');
@@ -74,7 +85,21 @@ io.on('connection', async (socket) => {
   });
 });
 
-app.use(express.static('public'));
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl: mongoConfig.url,
+      mongoOptions: mongoConfig.advancedOptions,
+    }),
+    secret: 'secreto',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      expires: 10 * 60 * 1000,
+    },
+  })
+);
+
 app.get('/api/productos-test', (req, res) => {
   let productos = [];
   for (let i = 0; i < 5; i++) {
@@ -87,8 +112,38 @@ app.get('/api/productos-test', (req, res) => {
   res.json(productos);
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// LOGIN
+app.get('/login', (req, res) => {
+  res.sendFile(process.cwd() + '/public/login.html');
+});
+app.post('/login', (req, res) => {
+  const { nombre } = req.body;
+  req.session.user = nombre;
+  res.redirect('/');
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.send('Logout');
+});
+
+app.get('/user', (req, res) => {
+  const nombre = req.session.user;
+  console.log(nombre);
+  res.json(nombre);
+});
+
+app.get('/', (req, res) => {
+  if (req.session.user) {
+    console.log('Welcome');
+    res.sendFile(process.cwd() + '/public/index.html');
+  } else {
+    console.log('Usuario no loggeado');
+    res.redirect('/login');
+  }
+});
+
+app.use(express.static('public'));
 
 app.use((req, res) => {
   res.json({

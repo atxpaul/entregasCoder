@@ -5,6 +5,8 @@ const form = document.getElementById('#form');
 const denormalize = normalizr.denormalize;
 const schema = normalizr.schema;
 
+let nombreusuario;
+
 // Definimos esquemas
 const user = new schema.Entity('author');
 
@@ -101,3 +103,33 @@ function addMessage(e) {
   socket.emit('new-message', message);
   return false;
 }
+
+async function logout() {
+  try {
+    const login = await fetch('/logout', {
+      method: 'GET',
+    });
+
+    const clean = document.getElementById('main');
+    clean.innerHTML = '';
+    document.getElementById('user').innerHTML = `Hasta otra, ${nombreusuario}`;
+  } catch (error) {
+    document.querySelector('body').innerHTML = error;
+  }
+  setTimeout(function () {
+    window.location.href = '/login';
+  }, 3000);
+}
+
+(async () => {
+  try {
+    const login = await fetch('/user', {
+      method: 'GET',
+    });
+
+    nombreusuario = await login.json();
+    document.getElementById('user').innerHTML = `Bienvenido, ${nombreusuario}`;
+  } catch (error) {
+    document.querySelector('body').innerHTML = error;
+  }
+})();
