@@ -1,0 +1,4 @@
+MONGO_DB='mongodb+srv://url'
+MARIA_DB_HOST='localhost'
+MARIA_DB_USER='coder'
+MARIA_DB_PASS='coder'
