@@ -1,0 +1,35 @@
+#Arrancar servidor en modo fork:
+node src/server.sh -m=fork
+
+#Arrancar servidor en modo cluster
+node src/server.sh -m=cluster
+
+#Arrancar servidor con forever en modo fork
+forever start src/server.js
+
+#Arrancar servidor con forever en modo cluster
+forever start src/server.js -m=cluster
+
+#Listar procesos con forever
+forever list
+
+#Lister procesos en linux
+ps aux | grep node
+
+#Parar procesos con forever (se puede usar el PID con stop también)
+forever stopall
+
+#Arrancar pm2 en fork
+pm2 start src/server.js --name="ServerCoder" --watch
+
+#Arrancar pm2 en cluster
+pm2 start src/server.js --name="ServerCoder" -i max --watch
+
+#Listar procesos en pm2
+pm2 list
+
+#Parar server pm2
+pm2 stop ServerCoder
+
+#Matar todos los procesos de node para forzar que se arranquen de nuevo con pm2 o forever
+kill -9 $(ps aux | grep node | grep -v 'grep\|forever' | awk '{print $2}')

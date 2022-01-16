@@ -1,0 +1,29 @@
+body {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: green;
+}
+
+label {
+  font-weight: bold;
+  font-style: italic;
+}
+
+#messages {
+  color: red;
+}
+
+#messages strong {
+  color: blue;
+}
+
+#messages em {
+  color: green;
+}

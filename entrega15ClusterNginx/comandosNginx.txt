@@ -1,0 +1,38 @@
+########
+# Pasos consigna 1
+#
+# Redirigir todas las consultas a /api/randoms a un cluster de servidores escuchando en el puerto 8081. El cluster será creado desde node utilizando el módulo nativo cluster.
+#
+# El resto de las consultas, redirigirlas a un servidor individual escuchando en el puerto 8080.
+
+# Primero, copiamos nginx_cluster_node.conf a /etc/nginx/nginx.conf y recargamos nginx
+
+cp nginx_cluster_node.conf /etc/nginx7nginx.conf
+systemctl restart nginx #Si esto no valiera, se puede usar service nginx reload
+node src/server.js -m=cluster -c=4 -p=8081 #Modo cluster con node en puerto 8081, usando 4 procesadores (si tienes 4, recomendado bajar a menos, como a 3 o 2)
+node src/server.js #Modo fork en puerto por defecto, 8080
+
+#De esta manera las peticiones que entran en nginx (en el puerto 80 por defecto) se redirigen al fork y las que van a /api/randoms se redirigen al cluster
+#OJO, si vamos al puerto 8080 directamente y hacemos alguna petición, se va a enrutar directamente al fork. Es importante seguir esto.
+
+
+
+#########
+# Pasos consigna 2
+#
+# Modificar la configuración para que todas las consultas a /api/randoms sean redirigidas a un cluster de servidores gestionado desde nginx, repartiéndolas equitativamente entre 4 instancias escuchando en los puertos 8082, 8083, 8084 y 8085 respectivamente.
+#
+
+# Primero, copiamos nginx_fork_node.conf a /etc/nginx/nginx.conf y recargamos nginx
+cp nginx_fork_node.conf /etc/nginx7nginx.conf
+systemctl restart nginx #Si esto no valiera, se puede usar service nginx reload
+
+# He dejado un startRandoms.sh con los comandos para levantar todos los procesos, que es tal que así:
+node src/server.js &
+node src/server.js -p=8082 &
+node src/server.js -p=8083 &
+node src/server.js -p=8084 &
+node src/server.js -p=8085 &
+
+#De esta manera las peticiones que entran en nginx (en el puerto 80 por defecto) se redirigen al 8080 y las que van a /api/randoms se redirigen a los puertos 8082 8083 8084 8085
+#OJO, si vamos al puerto 8080 directamente y hacemos alguna petición, se va a enrutar directamente al fork. Es importante seguir esto.
