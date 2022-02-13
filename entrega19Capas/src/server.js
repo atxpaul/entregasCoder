@@ -1,11 +1,9 @@
 import app from './loader/express.js';
+import Mongo from './loader/Mongo.js';
 import Productos from './dao/products/ProductMongoDao.js';
 import Mensajes from './persistence/FileContainer.js';
-import mongoConfig from './config/mongoConfig.js';
 
 import logger from './config/logger.js';
-
-import mongoose from 'mongoose';
 
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';
@@ -61,12 +59,9 @@ io.on('connection', async (socket) => {
 
 const PORT = process.env.PORT || 8080;
 
-async function connectDb() {
-  mongoose.connect(mongoConfig.url, mongoConfig.options);
-}
-
 const connectedServer = httpServer.listen(PORT, async () => {
-  await connectDb();
+  const mongo = new Mongo();
+  await mongo.connectDb();
   logger.info(
     `Servidor http escuchando en el puerto ${connectedServer.address().port}`
   );
