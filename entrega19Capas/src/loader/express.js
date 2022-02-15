@@ -1,13 +1,21 @@
 import express from 'express';
+import logger from '../config/logger.js';
 import fakerRouter from '../router/fakerRouter.js';
 import userRouter from '../router/userRouter.js';
 import infoRouter from '../router/infoRouter.js';
 import randomRouter from '../router/randomRouter.js';
+import passport from '../middleware/passport.js';
+import session from 'express-session';
+import config from '../config/config.js';
 
 // Arrancamos express
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session(config.session));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/randoms', randomRouter);
 app.use('/info', infoRouter);

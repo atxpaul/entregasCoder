@@ -25,7 +25,7 @@ process.on('message', (msg) => {
   cantidad = msg;
   console.log(`worker #${process.pid} iniciando su tarea`);
   const random = calculo();
-  console.log(random);
+  //console.log(random);
   process.send(random);
   console.log(`worker #${process.pid} finalizó su trabajo`);
   process.exit();
