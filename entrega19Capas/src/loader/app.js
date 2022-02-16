@@ -4,9 +4,12 @@ import fakerRouter from '../router/fakerRouter.js';
 import userRouter from '../router/userRouter.js';
 import infoRouter from '../router/infoRouter.js';
 import randomRouter from '../router/randomRouter.js';
+import SocketRouter from '../router/SocketRouter.js';
 import passport from '../middleware/passport.js';
 import session from 'express-session';
 import config from '../config/config.js';
+import { Server as HttpServer } from 'http';
+import { Server as Socket } from 'socket.io';
 
 // Arrancamos express
 const app = express();
@@ -36,4 +39,12 @@ app.use((req, res) => {
   });
 });
 
-export default app;
+const httpServer = new HttpServer(app);
+
+const io = new Socket(httpServer);
+
+const socketRouter = new SocketRouter(io);
+
+socketRouter.startRouter();
+
+export default httpServer;
