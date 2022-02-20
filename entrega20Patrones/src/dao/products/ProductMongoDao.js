@@ -7,6 +7,11 @@ class ProductMongoDao extends MongoContainer {
       price: { type: Number, required: true },
       thumbnail: { type: String, required: true },
     });
+    if (typeof ProductMongoDao.instance === 'object') {
+      return ProductMongoDao.instance;
+    }
+    ProductMongoDao.instance = this;
+    return this;
   }
 }
 
