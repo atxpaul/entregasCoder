@@ -1,29 +1,39 @@
-import { productDao } from '../dao/ProductDaoFactory.js';
 import logger from '../config/logger.js';
 
 class Product {
-  constructor() {
-    //this.products = new Productos();
+  #title;
+  #price;
+  #thumbnail;
+  constructor(title, price, thumbnail) {
+    this.title = this.setTitle(title);
+    this.price = this.setPrice(price);
+    this.thumbnail = this.setThumbnail(thumbnail);
   }
 
-  createProduct = async (product) => {
-    try {
-      await productDao.save(product);
-      logger.info(`New product has been created`);
-    } catch (err) {
-      logger.error(error);
+  setTitle(title) {
+    if (title) {
+      this.title = title;
+      return title;
+    } else {
+      throw Error(`Missing field for create product`);
     }
-  };
-
-  getAllProducts = async () => {
-    let products = [];
-    try {
-      products = await productDao.getAll();
-    } catch (err) {
-      logger.error(err);
+  }
+  setPrice(price) {
+    if (price) {
+      this.price = price;
+      return price;
+    } else {
+      throw Error(`Missing field for create product`);
     }
-    return products;
-  };
+  }
+  setThumbnail(thumbnail) {
+    if (thumbnail) {
+      this.thumbnail = thumbnail;
+      return thumbnail;
+    } else {
+      throw Error(`Missing field for create product`);
+    }
+  }
 }
 
 export default Product;
