@@ -18,8 +18,9 @@ class SocketRouter {
     this.io.on('connection', async (socket) => {
       logger.info('Nuevo cliente conectado!');
       let data = await messageController.getAllMessagesController();
+      console.log(data);
       let normalizedMessages = await normalization(data);
-
+      console.log(normalizedMessages);
       socket.emit(
         'products',
         await productController.getAllProductsController()

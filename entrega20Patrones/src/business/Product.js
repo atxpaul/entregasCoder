@@ -1,5 +1,3 @@
-import logger from '../config/logger.js';
-
 class Product {
   #title;
   #price;

@@ -76,5 +76,18 @@
         "text": "Mensaje de prueba 1",
         "date": "16/2/2022, 23:34:44",
         "id": 6
+    },
+    {
+        "author": {
+            "id": "prueba@gmail.com",
+            "nombre": "Prueba",
+            "apellido": "Test",
+            "edad": "32",
+            "alias": "Prueba",
+            "avatar": "https://cdn3.iconfinder.com/data/icons/vol-4/128/pen-256.png"
+        },
+        "text": "Mensaje de prueba 2",
+        "date": "21/2/2022, 21:59:32",
+        "id": 7
     }
 ]
