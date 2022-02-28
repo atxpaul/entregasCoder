@@ -7,6 +7,7 @@ class Mongo {
   connectDb = async () => {
     try {
       mongoose.connect(mongoConfig.url, mongoConfig.options);
+      logger.info(`Database is connected`);
     } catch (err) {
       logger.error(err);
     }

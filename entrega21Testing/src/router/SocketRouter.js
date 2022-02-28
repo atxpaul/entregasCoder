@@ -1,7 +1,6 @@
 import logger from '../config/logger.js';
 
-import ProductController from '../controller/ProductController.js';
-//import Mensajes from '../persistence/FileContainer.js';
+import ProductController from '../controller/ProductSocketController.js';
 import MessageController from '../controller/MessageController.js';
 
 import normalization from '../middleware/normalizr.js';

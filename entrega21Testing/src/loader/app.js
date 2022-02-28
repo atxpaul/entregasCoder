@@ -1,5 +1,6 @@
 import express from 'express';
 import logger from '../config/logger.js';
+import ProductRouter from '../router/ProductRouter.js';
 import FakerRouter from '../router/FakerRouter.js';
 import UserRouter from '../router/UserRouter.js';
 import InfoRouter from '../router/InfoRouter.js';
@@ -11,6 +12,7 @@ import config from '../config/config.js';
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';
 
+const productRouter = new ProductRouter(express);
 const infoRouter = new InfoRouter(express);
 const fakerRouter = new FakerRouter(express);
 const randomRouter = new RandomRouter(express);
@@ -25,6 +27,7 @@ app.use(session(config.session));
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/api/products', await productRouter.start());
 app.use('/api/randoms', randomRouter.start());
 app.use('/info', infoRouter.start());
 app.use('/api/productos-test', fakerRouter.start());

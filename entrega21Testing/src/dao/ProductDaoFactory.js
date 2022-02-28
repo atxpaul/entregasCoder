@@ -2,19 +2,19 @@ import ProductFileDao from './products/ProductFileDao.js';
 import ProductMemoryDao from './products/ProductMemoryDao.js';
 import ProductMongoDao from './products/ProductMongoDao.js';
 
-const option = process.argv[2] || 'MONGO';
+const option = process.argv[2] || 'FILE';
 
 let productDao;
 
 switch (option) {
-  case 'MEM':
-    productDao = new ProductMemoryDao();
+  case 'MONGO':
+    productDao = new ProductMongoDao();
     break;
-  case 'FILE':
-    productDao = new ProductFileDao();
+  case 'MEM':
+    productDao = new ProductMongoDao();
     break;
   default:
-    productDao = new ProductMongoDao();
+    productDao = new ProductFileDao();
     break;
 }
 
