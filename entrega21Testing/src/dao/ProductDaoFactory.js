@@ -11,7 +11,7 @@ switch (option) {
     productDao = new ProductMongoDao();
     break;
   case 'MEM':
-    productDao = new ProductMongoDao();
+    productDao = new ProductMemoryDao();
     break;
   default:
     productDao = new ProductFileDao();
