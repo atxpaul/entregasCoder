@@ -55,4 +55,4 @@ const socketRouter = new SocketRouter(io);
 
 socketRouter.startRouter();
 
-export default httpServer;
+export { httpServer, app };

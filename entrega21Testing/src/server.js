@@ -1,4 +1,4 @@
-import httpServer from './loader/app.js';
+import { httpServer } from './loader/app.js';
 import Mongo from './loader/Mongo.js';
 
 import logger from './config/logger.js';
