@@ -1,0 +1,15 @@
+  Ciclo Test CRUD Productos
+Servidor express escuchando en el puerto 59083
+    POST
+      ✔ Añadir un producto
+    GET
+      ✔ Listar productos
+    GET
+      ✔ Listar producto por ID
+    PUT
+      ✔ Actualizar un producto
+    DELETE
+      ✔ Borrar un producto
+
+
+  5 passing (59ms)
