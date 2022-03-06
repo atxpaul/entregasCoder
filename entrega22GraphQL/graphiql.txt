@@ -1,0 +1,37 @@
+query {
+ getAllProducts {
+   title,price, thumbnail
+ }
+}
+
+query {
+  getProductById (id:1){
+    title, price
+  }
+}
+
+mutation {
+ createProduct(data: {
+   title: "Test"
+   price: 35
+  thumbnail: "http://testurl.com/cosa.jpg"
+ }) {
+   id
+ }
+}
+
+mutation {
+ updateProductById(id: 1,data: {
+   title: "Test2"
+   price: 900
+  thumbnail: "http://testurl.com/cosa2.jpg"
+ }) {
+   id
+ }
+}
+
+mutation {
+ deleteProductById(id:1) {
+   title,price, thumbnail
+ }
+}
