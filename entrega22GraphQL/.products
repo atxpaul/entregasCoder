@@ -1,8 +1,14 @@
 [
     {
-        "title": "Bolígrafo",
-        "price": "3.5",
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/vol-4/128/pen-256.png",
+        "title": "Test",
+        "price": 35,
+        "thumbnail": "http://testurl.com/cosa.jpg",
         "id": 1
+    },
+    {
+        "title": "Test",
+        "price": 35,
+        "thumbnail": "http://testurl.com/cosa.jpg",
+        "id": 2
     }
 ]

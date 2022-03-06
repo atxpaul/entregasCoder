@@ -1,4 +1,5 @@
 import express from 'express';
+import { graphqlHTTP } from 'express-graphql';
 import logger from '../config/logger.js';
 import ProductRouter from '../router/ProductRouter.js';
 import FakerRouter from '../router/FakerRouter.js';
@@ -6,6 +7,7 @@ import UserRouter from '../router/UserRouter.js';
 import InfoRouter from '../router/InfoRouter.js';
 import RandomRouter from '../router/RandomRouter.js';
 import SocketRouter from '../router/SocketRouter.js';
+import ProductGraphQLRouter from '../router/ProductGraphQLRouter.js';
 import passport from '../middleware/passport.js';
 import session from 'express-session';
 import config from '../config/config.js';
@@ -26,6 +28,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session(config.session));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/graphql', new ProductGraphQLRouter(graphqlHTTP));
 
 app.use('/api/products', await productRouter.start());
 app.use('/api/randoms', randomRouter.start());
