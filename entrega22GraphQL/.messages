@@ -89,5 +89,18 @@
         "text": "Mensaje de prueba 2",
         "date": "21/2/2022, 21:59:32",
         "id": 7
+    },
+    {
+        "author": {
+            "id": "test@hotmail.com",
+            "nombre": "Test",
+            "apellido": "Test2",
+            "edad": "32",
+            "alias": "AliasTest",
+            "avatar": "https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png"
+        },
+        "text": "Mensaje de prueba 3",
+        "date": "6/3/2022, 18:13:50",
+        "id": 8
     }
 ]

@@ -4,10 +4,10 @@ class Message {
   #date;
 
   constructor({ author, text, date, id }) {
-    this.author = this.setAuthor(author);
-    this.text = this.setText(text);
-    this.date = this.setDate(date);
-    this.id = this.setId(id);
+    this.setAuthor(author);
+    this.setText(text);
+    this.setDate(date);
+    this.setId(id);
   }
 
   setAuthor(author) {

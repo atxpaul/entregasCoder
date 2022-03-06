@@ -7,12 +7,12 @@ class Author {
   #avatar;
 
   constructor({ id, nombre, apellido, edad, alias, avatar }) {
-    this.id = this.setId(id);
-    this.nombre = this.setNombre(nombre);
-    this.apellido = this.setApellido(apellido);
-    this.edad = this.setEdad(edad);
-    this.alias = this.setAlias(alias);
-    this.avatar = this.setAvatar(avatar);
+    this.setId(id);
+    this.setNombre(nombre);
+    this.setApellido(apellido);
+    this.setEdad(edad);
+    this.setAlias(alias);
+    this.setAvatar(avatar);
   }
 
   setId(id) {

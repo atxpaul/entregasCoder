@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "title": "Bolígrafo",
+        "price": "3.5",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/vol-4/128/pen-256.png",
+        "id": 1
+    }
+]

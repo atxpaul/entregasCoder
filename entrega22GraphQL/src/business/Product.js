@@ -3,9 +3,9 @@ class Product {
   #price;
   #thumbnail;
   constructor(title, price, thumbnail) {
-    this.title = this.setTitle(title);
-    this.price = this.setPrice(price);
-    this.thumbnail = this.setThumbnail(thumbnail);
+    this.setTitle(title);
+    this.setPrice(price);
+    this.setThumbnail(thumbnail);
   }
 
   setTitle(title) {

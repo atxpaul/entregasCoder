@@ -57,8 +57,9 @@ function render(data) {
   const html = data
     .map((elem, index) => {
       return `<div>
+        <img class="img-fluid img-thumbnail" src="${elem.author.avatar}" style="width: 50px;">
         <strong>${elem.author.alias}</strong> [${elem.date}]
-        <em>${elem.text}</em><img class="img-fluid img-thumbnail" src="${elem.author.avatar}" style="width: 50px;"></div>`;
+        <em>${elem.text}</em></div>`;
     })
     .join(' ');
   document.getElementById('messages').innerHTML = html;
