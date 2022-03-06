@@ -18,6 +18,8 @@ const productUpdate = {
     'https://cdn3.iconfinder.com/data/icons/education-209/64/pencil-pen-stationery-school-512.png',
 };
 
+let id;
+
 describe('Ciclo Test CRUD Productos', () => {
   before(async function () {
     server = await startServer();
@@ -40,6 +42,7 @@ describe('Ciclo Test CRUD Productos', () => {
       expect(product.title).to.eql(productInsert.title);
       expect(product.price).to.eql(productInsert.price);
       expect(product.thumbnail).to.eql(productInsert.thumbnail);
+      id = product.id;
     });
   });
 
@@ -50,11 +53,8 @@ describe('Ciclo Test CRUD Productos', () => {
       const products = response.body;
       expect(products).not.to.be.empty;
     });
-  });
-
-  describe('GET', () => {
     it('Listar producto por ID', async () => {
-      const response = await request.get('/1');
+      const response = await request.get(`/${id}`);
       expect(response.status).to.eql(200);
       const product = response.body;
       expect(product).to.include.keys('title', 'price', 'thumbnail');
@@ -66,7 +66,7 @@ describe('Ciclo Test CRUD Productos', () => {
 
   describe('PUT', () => {
     it('Actualizar un producto', async () => {
-      const response = await request.put('/1').send(productUpdate);
+      const response = await request.put(`/${id}`).send(productUpdate);
       expect(response.status).to.eql(200);
 
       const product = response.body;
@@ -79,7 +79,7 @@ describe('Ciclo Test CRUD Productos', () => {
 
   describe('DELETE', () => {
     it('Borrar un producto', async () => {
-      const response = await request.delete('/1');
+      const response = await request.delete(`/${id}`);
       expect(response.status).to.eql(200);
 
       const product = response.body;

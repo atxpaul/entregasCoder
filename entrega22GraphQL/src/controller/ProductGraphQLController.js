@@ -5,8 +5,9 @@ import Product from '../business/Product.js';
 class ProductGraphQLController {
   constructor() {}
 
-  createProductController = async ({ data }) => {
-    const { title, price, thumbnail } = data;
+  createProductController = async (data) => {
+    const rawProduct = JSON.parse(JSON.stringify(data));
+    const { title, price, thumbnail } = rawProduct.data;
     const product = new Product(title, price, thumbnail);
     const id = await productDao.save(product);
     if (id) {
@@ -33,7 +34,11 @@ class ProductGraphQLController {
   };
 
   updateProductByIdController = async ({ id, data }) => {
-    const product = data;
+    const rawProduct = JSON.parse(JSON.stringify(data));
+    console.log(rawProduct);
+    const { title, price, thumbnail } = rawProduct;
+
+    const product = new Product(title, price, thumbnail);
     if (id) {
       const productoActualizado = await productDao.updateById(id, product);
       return productoActualizado;
@@ -45,6 +50,7 @@ class ProductGraphQLController {
   deleteProductByIdController = async ({ id }) => {
     const productoEliminado = await productDao.getById(id);
     if (productoEliminado.length != 0) {
+      logger.info(`Deleting product ${id}`);
       await productDao.deleteById(id);
       return productoEliminado;
     } else {

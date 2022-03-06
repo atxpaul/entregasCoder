@@ -64,7 +64,7 @@ class FileContainer {
     let object;
     let content = await this.getAll();
     try {
-      object = content.find((c) => c.id == id);
+      object = content.find((c) => c.id == Number(id));
     } catch (err) {
       console.log(err);
     }
@@ -86,7 +86,7 @@ class FileContainer {
 
   async deleteById(id) {
     let content = await this.getAll();
-    content = content.filter((c) => c.id !== id);
+    content = content.filter((c) => c.id !== Number(id));
     const json = JSON.stringify(content, null, 4);
     try {
       await fs.promises.writeFile(this.fileName, json, 'utf-8');

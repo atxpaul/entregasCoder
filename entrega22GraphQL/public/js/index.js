@@ -16,18 +16,59 @@ const message = new schema.Entity('messages', {
 
 const messageArray = [message];
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const product = {
     title: document.getElementById('title').value,
-    price: document.getElementById('price').value,
+    price: Number(document.getElementById('price').value),
     thumbnail: document.getElementById('thumbnail').value,
   };
 
-  socket.emit('update', product);
+  const title = document.getElementById('title').value;
+  const price = Number(document.getElementById('price').value);
+  const thumbnail = document.getElementById('thumbnail').value;
+
+  // const query = `mutation {
+  //   createProduct (title: ${title}, price: ${price}, thumbnail: ${thumbnail}){
+  //     id
+  //   }
+  // }`;
+
+  // const query =
+  //   'mutation { createProduct(data: { title: "' +
+  //   title +
+  //   '", price:' +
+  //   price +
+  //   ', thumbnail: "' +
+  //   thumbnail +
+  //   '" }) { id }}';
+
+  const query = `mutation { createProduct(data: { title: "${title}", price:${price}, thumbnail: "${thumbnail}" }) { id }}`;
+
+  console.log(query);
+
+  fetch('/api/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({ query: query }),
+  })
+    .then((r) => r.json())
+    .then((data) => console.log('data returned:', data));
+
+  // const xhr = new XMLHttpRequest();
+  // xhr.open('POST', `/api/graphql`, true);
+  // xhr.setRequestHeader('Content-Type', 'application/json');
+  // xhr.send({ query: query });
 
   form.reset();
+
+  await new Promise((r) => setTimeout(r, 1000));
+
+  socket.emit('update');
 });
 
 socket.on('products', (products) => {

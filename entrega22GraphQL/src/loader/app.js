@@ -29,7 +29,7 @@ app.use(session(config.session));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/graphql', new ProductGraphQLRouter(graphqlHTTP));
+app.use('/api/graphql', new ProductGraphQLRouter(graphqlHTTP));
 
 app.use('/api/products', await productRouter.start());
 app.use('/api/randoms', randomRouter.start());

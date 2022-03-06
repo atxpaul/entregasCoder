@@ -13,7 +13,7 @@ class Product {
       this.title = title;
       return title;
     } else {
-      throw Error(`Missing field for create product`);
+      throw Error(`Missing field title for create product`);
     }
   }
   setPrice(price) {
@@ -21,7 +21,7 @@ class Product {
       this.price = price;
       return price;
     } else {
-      throw Error(`Missing field for create product`);
+      throw Error(`Missing field price for create product`);
     }
   }
   setThumbnail(thumbnail) {
@@ -29,7 +29,7 @@ class Product {
       this.thumbnail = thumbnail;
       return thumbnail;
     } else {
-      throw Error(`Missing field for create product`);
+      throw Error(`Missing field thumbnail for create product`);
     }
   }
 }

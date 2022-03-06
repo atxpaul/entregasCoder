@@ -24,9 +24,9 @@ class SocketRouter {
       );
       socket.emit('messages', normalizedMessages);
 
-      socket.on('update', async (product) => {
-        logger.info('Se va a insertar un producto');
-        await productController.createProductController(product);
+      socket.on('update', async () => {
+        logger.info('Se va a actualizar la lista de productos');
+
         this.io.sockets.emit(
           'products',
           await productController.getAllProductsController()
