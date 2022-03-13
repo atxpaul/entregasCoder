@@ -4,7 +4,6 @@ import { ProductFileDao } from '../dao/product.dao';
 
 @Injectable()
 export class ProductsService {
-    //private readonly products: Product[]=[];
     private readonly products : ProductFileDao 
     constructor(){
         this.products = new ProductFileDao();
