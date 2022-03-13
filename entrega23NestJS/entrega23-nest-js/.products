@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Regla",
+        "price": 1.2,
+        "thumbnail": "pruebaimagen",
+        "id": 3
+    },
+    {
+        "title": "Regla",
+        "price": 2.2,
+        "thumbnail": "pruebaimagen",
+        "id": 4
+    },
+    {
+        "title": "Cosa",
+        "price": 2.2,
+        "thumbnail": "pruebaimagen",
+        "id": 1
+    }
+]
